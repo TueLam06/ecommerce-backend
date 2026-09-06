@@ -6,21 +6,18 @@ app.use(express.json());
 const PORT = 5000;
 const pool = require('./db');
 
-app.get('/api/products/:id', async (req, res) => {
-    const { id } = req.params;
+const chatRoutes = require('./chat');
+app.use('/api/chat', chatRoutes);
+
+app.get('/api/products', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: 'Không tìm thấy sản phẩm' });
-        }
-        res.json(result.rows[0]);
+        const result = await pool.query('SELECT * FROM products');
+        res.json(result.rows);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Lỗi server' });
     }
 });
-
-app.use(express.json());
 
 app.post('/api/orders', async (req, res) => {
     const { name, phone, address, cart, total } = req.body;
