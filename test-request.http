@@ -1,6 +1,0 @@
-POST http://localhost:5000/api/chat
-Content-Type: application/json
-
-{
-  "message": "tôi cần laptop văn phòng dưới 20 triệu"
-}
