@@ -1,0 +1,28 @@
+### Test 1: Đặt hàng KHÔNG kèm token (khách vãng lai)
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{
+  "name": "Khach Vang Lai",
+  "phone": "0900000000",
+  "address": "123 Đường ABC, Hà Nội",
+  "cart": [
+    { "id": 1, "quantity": 2, "price": 100000 }
+  ],
+  "total": 200000
+}
+
+### Test 2: Đặt hàng CÓ kèm token (đã đăng nhập)
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0MUBleGFtcGxlLmNvbSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc4ODgxMDQyOSwiZXhwIjoxNzg4ODk2ODI5fQ.lQ05l38AAK9FRxhctpbxLtp8cWfq4PN19jQavzUzSZo
+
+{
+  "name": "Nguyen Van A",
+  "phone": "0911111111",
+  "address": "456 Đường XYZ, Hà Nội",
+  "cart": [
+    { "id": 1, "quantity": 1, "price": 100000 }
+  ],
+  "total": 100000
+}
